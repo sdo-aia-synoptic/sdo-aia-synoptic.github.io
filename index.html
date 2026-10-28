@@ -25,21 +25,84 @@ section{padding:76px 0;border-bottom:1px solid #1e354b}h2{font-size:clamp(1.7rem
 @media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.hero .shell{padding-top:70px}.navlinks{gap:12px}}
 @media(max-width:560px){.grid,.stats{grid-template-columns:1fr}.nav{align-items:flex-start;padding:14px 0;flex-direction:column}.hero .shell{padding-top:52px;padding-bottom:55px}section{padding:53px 0}.catalog-controls{align-items:stretch}.search{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Scientific image gallery. Images are generated from the archive's actual preview PNGs. */
+[hidden]{display:none!important}
+.visual-frame{border:1px solid #365271;background:#081524;border-radius:15px;overflow:hidden;min-width:0}
+.visual-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(275px,.7fr);gap:20px;align-items:start;margin-top:26px}
+.visual-screen{position:relative;display:grid;align-items:center;justify-content:center;min-height:340px;background:repeating-linear-gradient(0deg,transparent 0,transparent 23px,#0f2940 24px),repeating-linear-gradient(90deg,transparent 0,transparent 23px,#0f2940 24px),#07111e}
+.visual-image-button{display:block;width:100%;min-height:300px;cursor:zoom-in;border:0;padding:0;background:transparent;color:inherit}
+.visual-image-button img{display:block;width:100%;height:auto;object-fit:contain}
+.visual-image-button[hidden]{display:none}
+.visual-image-button:disabled{cursor:default}
+.visual-fallback{padding:42px 22px;text-align:center;color:#c2d4e5;max-width:420px;margin:auto}
+.visual-fallback .fallback-icon{display:block;font-size:3rem;color:#6ea9bf;margin-bottom:10px}
+.visual-fallback small{display:block;margin-top:8px;color:#91aac0}
+.visual-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 18px;border-top:1px solid #2b435b}
+.visual-meta strong{font-size:1.02rem}
+.visual-meta span{color:var(--muted);font-size:12px}
+.visual-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 16px}
+.visual-tab{min-width:0;min-height:68px;border:1px solid #36516c;border-radius:10px;background:#10273d;color:#fff;padding:10px 8px;cursor:pointer;font:inherit;text-align:center;transition:border-color .15s,background .15s}
+.visual-tab b{display:block;font-size:1.15rem;line-height:1.3}
+.visual-tab span{display:block;font-size:.69rem;color:#acbfd2}
+.visual-tab::before{content:'';display:block;width:30px;height:4px;border-radius:3px;background:var(--wave-color,#70cad0);margin:0 auto 7px}
+.visual-tab[aria-pressed=true]{border:2px solid var(--accent);background:#1a3b48}
+.visual-tab:hover{background:#1c3953}
+.visual-explanation{color:var(--muted);font-size:14px;line-height:1.55}
+.visual-explanation strong{color:#e4eef7}
+.visual-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.visual-toolbar button{border:1px solid #4a687e;border-radius:8px;padding:9px 14px;background:#16334c;color:#fff;cursor:pointer;font:inherit;font-size:14px}
+.visual-toolbar button:hover{background:#204660}
+.visual-note{padding:15px 18px;background:#102338;border:1px solid #36516a;border-radius:10px;color:#cad8e5;margin-top:18px;font-size:13px}
+.dataset-thumb{margin:0;min-height:128px;border-radius:8px;overflow:hidden;background:#0a1c2c;display:flex;align-items:center;justify-content:center}
+.dataset-thumb img{display:block;width:100%;height:144px;object-fit:cover;object-position:center 15%;border:1px solid #284158}
+.dataset-thumb .pending{font-size:12px;color:#94b1c9;padding:16px;text-align:center}
+.visual-dialog{border:1px solid #5a7793;background:#081422;color:#eaf2fa;border-radius:14px;padding:16px;max-width:min(1200px,95vw);max-height:92vh;box-shadow:0 20px 80px #000a}
+.visual-dialog::backdrop{background:#030a13df}
+.visual-dialog .dialog-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:12px}
+.visual-dialog .dialog-top button{border:1px solid #7290a8;border-radius:7px;padding:8px 16px;background:#19354e;color:#fff;font:inherit;cursor:pointer}
+.visual-dialog img{display:block;max-width:100%;max-height:78vh;object-fit:contain;margin:0 auto}
+@media(max-width:850px){.visual-layout{grid-template-columns:1fr}.visual-screen{min-height:200px}.visual-image-button{min-height:220px}}
+@media(max-width:560px){.visual-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.visual-tab{min-height:66px}.visual-meta{align-items:start}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="topbar"><nav class="shell" aria-label="Main navigation"><a class="brand" href="#top"><span class="brandmark" aria-hidden="true">☼</span><span>SDO/AIA · Synoptic Archive</span></a><div class="navlinks"><a href="#overview">Overview</a><a href="#catalog">Datasets</a><a href="#products">Products</a><a href="#validation">Validation</a><a href="#citation">Citation</a></div></nav></div>
+<div class="topbar"><nav class="shell" aria-label="Main navigation"><a class="brand" href="#top"><span class="brandmark" aria-hidden="true">☼</span><span>SDO/AIA · Synoptic Archive</span></a><div class="navlinks"><a href="#overview">Overview</a><a href="#visuals">Map Gallery</a><a href="#catalog">Datasets</a><a href="#products">Products</a><a href="#validation">Validation</a><a href="#citation">Citation</a></div></nav></div>
 <main id="main">
 <div class="hero" id="top"><div class="shell">
 <div class="kicker">Solar physics · Multiwavelength research archive</div>
 <h1>Carrington synoptic maps of the Sun, across nine AIA wavelengths.</h1>
 <p class="lead">A research archive of SDO/AIA EUV and UV synoptic maps, with CEA intensity FITS, internal uncertainty products, quality diagnostics and visual walkthrough videos.</p>
 <div class="badge"><strong>Harvard Dataverse status:</strong> 13 draft datasets · not publicly released</div>
-<div class="buttons"><a class="button" href="#catalog">Browse dataset catalog ↓</a><a class="button ghost" href="#validation">Read release status</a></div>
+<div class="buttons"><a class="button" href="#visuals">View real AIA maps ↓</a><a class="button ghost" href="#catalog">Browse dataset catalog</a><a class="button ghost" href="#validation">Read release status</a></div>
 <div class="stats"><div class="stat"><b>9</b><span>AIA UV/EUV passbands</span></div><div class="stat"><b>216</b><span>Carrington rotations per channel</span></div><div class="stat"><b>13</b><span>Harvard draft datasets</span></div><div class="stat"><b>9,932</b><span>FITS files uploaded and inventoried</span></div></div>
 </div></div>
 <section id="overview"><div class="shell"><div class="mini">The archive</div><h2>Designed for reproducible solar analysis</h2><p class="sub">The collection spans Carrington rotations CR2097–CR2312. Quantitative files are organized by wavelength and product, with separate uncertainty and quality-control resources where applicable.</p><div class="grid"><article class="panel"><div class="mini">Seven passbands</div><h3>Extreme ultraviolet</h3><p>94, 131, 171, 193, 211, 304, and 335 Å; baseline CEA intensity and three uncertainty FITS products per released rotation.</p></article><article class="panel"><div class="mini">Two passbands</div><h3>Ultraviolet</h3><p>1600 and 1700 Å; baseline CEA maps, dimensionless CLV-relative maps, uncertainty and sampling diagnostics.</p></article><article class="panel"><div class="mini">Data formats</div><h3>Quantitative and visual</h3><p>Individual FITS files provide numerical data. One 216-frame MP4 walkthrough per wavelength provides a visual check, not a replacement for quantitative FITS.</p></article></div></div></section>
+
+<section id="visuals" aria-labelledby="visuals-title"><div class="shell">
+<div class="mini">Archive image gallery · CR2291</div>
+<h2 id="visuals-title">See the synoptic maps</h2>
+<p class="sub">Preview images from the project’s own MATLAB-produced maps. Select an AIA wavelength to inspect the <strong>CEA intensity map (top)</strong> alongside its <strong>internal uncertainty map (bottom)</strong>. These are scientific quicklooks—not calibrated color measurements.</p>
+<div class="visual-layout">
+  <div class="visual-frame">
+    <div class="visual-screen">
+      <button id="visual-open" class="visual-image-button" type="button" aria-label="Enlarge selected scientific quicklook" hidden><img id="visual-img" src="" alt="" decoding="async"></button>
+      <div id="visual-fallback" class="visual-fallback" role="status"><span class="fallback-icon" aria-hidden="true">☼</span><strong>Preparing map quicklook</strong><small>Scientific preview will appear when its PNG is added to the website repository.</small></div>
+    </div>
+    <div class="visual-meta"><strong id="visual-label">AIA 193 Å · Carrington rotation 2291</strong><span>Top: intensity · Bottom: internal uncertainty</span></div>
+  </div>
+  <div>
+    <div class="mini">Select an AIA passband</div>
+    <div class="visual-tabs" id="visual-tabs" role="group" aria-label="Select wavelength quicklook"></div>
+    <p class="visual-explanation"><strong>What are we seeing?</strong> Each panel is a Carrington synoptic map covering 360° in longitude. The upper map contains brightness in DN/s; the lower contains the corresponding internal uncertainty in DN/s. UV 1600/1700 quicklooks show baseline intensity, not CLV-relative contrast.</p>
+    <div class="visual-toolbar"><button type="button" id="visual-prev">← Previous</button><button type="button" id="visual-next">Next →</button></div>
+  </div>
+</div>
+<div class="visual-note" role="note"><strong>Scientific use:</strong> Images are quicklook renderings with display stretches and false-color palettes. Use the archived FITS (when published) for quantitative work. The CR2291 preview does not represent data quality for every rotation. Missing thumbnails are never replaced with simulated science data.</div>
+</div></section>
+<dialog id="visual-dialog" class="visual-dialog" aria-label="Enlarged scientific map preview"><div class="dialog-top"><strong id="dialog-title">AIA map preview</strong><button type="button" id="dialog-close">Close ✕</button></div><img id="dialog-image" alt=""></dialog>
+
 <section id="catalog"><div class="shell"><div class="mini">Persistent identifiers</div><h2>Browse the nine wavelengths</h2><p class="sub">Each channel links to its Harvard Dataverse draft record. UV channels also link to the separate Uncertainty &amp; Sampling and Quality Control records.</p>
 <div class="callout" role="note"><span class="icon" aria-hidden="true">!</span><p><strong>Draft access notice.</strong> DOI records are created, but the datasets have <strong>not</strong> been formally published. Visitors without permission may be unable to view files, download FITS, or access draft content. Public download access will begin after scientific sign-off and publication.</p></div>
 <div class="catalog-controls"><div class="filters" role="group" aria-label="Filter wavelengths"><button class="filter active" data-filter="all" aria-pressed="true" type="button">All nine</button><button class="filter" data-filter="euv" aria-pressed="false" type="button">EUV (7)</button><button class="filter" data-filter="uv" aria-pressed="false" type="button">UV (2)</button></div><label><span class="visually-hidden" style="position:absolute;clip:rect(0 0 0 0);height:1px;width:1px;overflow:hidden">Search by wavelength</span><input class="search" type="search" id="search" placeholder="Search: e.g. 193 or 1600" aria-label="Search wavelength"></label></div>
@@ -72,6 +135,9 @@ section{padding:76px 0;border-bottom:1px solid #1e354b}h2{font-size:clamp(1.7rem
     {wave:'1700',type:'uv',doi:'QASBYM',n:650,unc:'D6HDFU',qc:'VLI2DV'}
   ];
   const grid = document.getElementById('dataset-grid');
+  const imagePath = wave => 'assets/previews/AIA'+wave+'_CR2291.png';
+  const imageAlts = wave => 'SDO/AIA '+wave+' angstrom Carrington rotation 2291, CEA synoptic intensity above and internal uncertainty below';
+
   const search = document.getElementById('search');
   const count = document.getElementById('result-count');
   let filter='all';
@@ -86,12 +152,16 @@ section{padding:76px 0;border-bottom:1px solid #1e354b}h2{font-size:clamp(1.7rem
       const title=document.createElement('span');title.className='wave';title.textContent=d.wave+' Å';
       const kind=document.createElement('span');kind.className='kind'+(d.type==='uv'?' uv':'');kind.textContent=d.type.toUpperCase();head.append(title,kind);
       const description=document.createElement('p'); description.textContent=d.type==='uv'?'CEA intensity, CLV-relative maps and internal uncertainty. Companion sampling/uncertainty and CAR QC datasets.':'CEA intensity plus three internal uncertainty components. One MP4 overview.';
+      const thumb=document.createElement('div');thumb.className='dataset-thumb';
+      const thumbImg=document.createElement('img');thumbImg.loading='lazy';thumbImg.decoding='async';thumbImg.src=imagePath(d.wave);thumbImg.alt=imageAlts(d.wave);
+      thumbImg.onerror=()=>{thumb.replaceChildren();const missing=document.createElement('span');missing.className='pending';missing.textContent='Quicklook pending · CR2291';thumb.append(missing);};
+      thumb.append(thumbImg);
       const detail=document.createElement('div');detail.className='details';detail.textContent=d.n+' files in draft · '+(d.flag||'CR2097–CR2312');
       const foot=document.createElement('footer');
       function anchor(suffix,label){const a=document.createElement('a');a.href=link(suffix);a.target='_blank';a.rel='noopener noreferrer';a.textContent=label+' ↗';a.setAttribute('aria-label',label+' for '+d.wave+' angstrom');return a;}
       foot.append(anchor(d.doi,'Main DOI'));
       if(d.unc){foot.append(anchor(d.unc,'Uncertainty DOI'),anchor(d.qc,'QC DOI'));}
-      article.append(head,description,detail,foot);grid.append(article);
+      article.append(head,thumb,description,detail,foot);grid.append(article);
     }
     count.textContent=matches.length+' of 9 wavelength records shown.';
   }
@@ -102,6 +172,60 @@ section{padding:76px 0;border-bottom:1px solid #1e354b}h2{font-size:clamp(1.7rem
   }));
   search.addEventListener('input',render);
   render();
+
+  // Real science-preview gallery. Only files generated from the user's own archive are loaded.
+  const galleryWaves=['94','131','171','193','211','304','335','1600','1700'];
+  const galleryPalette=['#57b476','#70c2ac','#e6b85c','#e5a56b','#ae87d9','#e47773','#729fcf','#d1a750','#cb8eaf'];
+  const visualTabs=document.getElementById('visual-tabs');
+  const visualImage=document.getElementById('visual-img');
+  const visualOpen=document.getElementById('visual-open');
+  const visualMissing=document.getElementById('visual-fallback');
+  const visualLabel=document.getElementById('visual-label');
+  const dialog=document.getElementById('visual-dialog');
+  const dialogImage=document.getElementById('dialog-image');
+  let selectedIndex=3, imageRequest=0;
+  const tabButtons=[];
+  for(let i=0;i<galleryWaves.length;i++){
+    const b=document.createElement('button'); b.type='button';b.className='visual-tab';
+    b.style.setProperty('--wave-color',galleryPalette[i]);
+    b.innerHTML='<b>'+galleryWaves[i]+' Å</b><span>'+(i<7?'EUV':'UV')+'</span>';
+    b.setAttribute('aria-label','Show AIA '+galleryWaves[i]+' angstrom map');
+    b.addEventListener('click',()=>selectWave(i));
+    visualTabs.append(b);tabButtons.push(b);
+  }
+  function selectWave(i){
+    selectedIndex=(i+galleryWaves.length)%galleryWaves.length;
+    const wave=galleryWaves[selectedIndex];
+    visualLabel.textContent='AIA '+wave+' Å · Carrington rotation 2291';
+    tabButtons.forEach((b,j)=>b.setAttribute('aria-pressed',String(j===selectedIndex)));
+    const request=++imageRequest;
+    visualOpen.hidden=true;visualImage.removeAttribute('src');
+    visualMissing.hidden=false;
+    visualMissing.innerHTML='<span class="fallback-icon" aria-hidden="true">☼</span><strong>Loading AIA '+wave+' Å quicklook…</strong>';
+    const probe=new Image();
+    probe.onload=()=>{
+      if(request!==imageRequest)return;
+      visualImage.src=probe.src;visualImage.alt=imageAlts(wave);
+      visualOpen.hidden=false;visualMissing.hidden=true;
+    };
+    probe.onerror=()=>{
+      if(request!==imageRequest)return;
+      visualMissing.innerHTML='<span class="fallback-icon" aria-hidden="true">☼</span><strong>AIA '+wave+' Å quicklook not yet uploaded</strong><small>Add assets/previews/AIA'+wave+'_CR2291.png to this site to display the real map. No synthetic replacement is shown.</small>';
+    };
+    probe.src=imagePath(wave);
+  }
+  document.getElementById('visual-prev').addEventListener('click',()=>selectWave(selectedIndex-1));
+  document.getElementById('visual-next').addEventListener('click',()=>selectWave(selectedIndex+1));
+  visualOpen.addEventListener('click',()=>{
+    if(visualOpen.hidden)return;
+    dialogImage.src=visualImage.src;dialogImage.alt=visualImage.alt;
+    document.getElementById('dialog-title').textContent=visualLabel.textContent;
+    if(typeof dialog.showModal==='function')dialog.showModal();
+    else window.open(visualImage.src,'_blank','noopener,noreferrer');
+  });
+  document.getElementById('dialog-close').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+  selectWave(3);
 })();
 </script>
 </body>
