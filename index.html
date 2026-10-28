@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Explore the SDO/AIA Carrington Synoptic Map Archive: nine UV/EUV passbands, CR2097–2312, CEA FITS, uncertainty products, QC data and 13 Harvard Dataverse draft datasets.">
-<meta name="theme-color" content="#0a1423">
-<title>SDO/AIA Synoptic Archive | Multiwavelength Carrington Maps</title>
+<meta name="theme-color" content="#f6f2ea">
+<title>SDO/AIA Synoptic Archive | CR2291 Maps & Videos · Light Edition</title>
 <style>
 :root{color-scheme:dark;--bg:#081320;--panel:#101e31;--panel2:#13263b;--line:#2b435b;--text:#f0f6ff;--muted:#afc3d7;--accent:#5ee4d1;--blue:#6cbcf4;--gold:#f7c36a;--danger:#ffc185}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.62 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -25,21 +25,267 @@ section{padding:76px 0;border-bottom:1px solid #1e354b}h2{font-size:clamp(1.7rem
 @media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.hero .shell{padding-top:70px}.navlinks{gap:12px}}
 @media(max-width:560px){.grid,.stats{grid-template-columns:1fr}.nav{align-items:flex-start;padding:14px 0;flex-direction:column}.hero .shell{padding-top:52px;padding-bottom:55px}section{padding:53px 0}.catalog-controls{align-items:stretch}.search{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Scientific image gallery. Images are generated from the archive's actual preview PNGs. */
+[hidden]{display:none!important}
+.visual-frame{border:1px solid #365271;background:#081524;border-radius:15px;overflow:hidden;min-width:0}
+.visual-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(275px,.7fr);gap:20px;align-items:start;margin-top:26px}
+.visual-screen{position:relative;display:grid;align-items:center;justify-content:center;min-height:340px;background:repeating-linear-gradient(0deg,transparent 0,transparent 23px,#0f2940 24px),repeating-linear-gradient(90deg,transparent 0,transparent 23px,#0f2940 24px),#07111e}
+.visual-image-button{display:block;width:100%;min-height:300px;cursor:zoom-in;border:0;padding:0;background:transparent;color:inherit}
+.visual-image-button img{display:block;width:100%;height:auto;object-fit:contain}
+.visual-image-button[hidden]{display:none}
+.visual-image-button:disabled{cursor:default}
+.visual-fallback{padding:42px 22px;text-align:center;color:#c2d4e5;max-width:420px;margin:auto}
+.visual-fallback .fallback-icon{display:block;font-size:3rem;color:#6ea9bf;margin-bottom:10px}
+.visual-fallback small{display:block;margin-top:8px;color:#91aac0}
+.visual-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 18px;border-top:1px solid #2b435b}
+.visual-meta strong{font-size:1.02rem}
+.visual-meta span{color:var(--muted);font-size:12px}
+.visual-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 16px}
+.visual-tab{min-width:0;min-height:68px;border:1px solid #36516c;border-radius:10px;background:#10273d;color:#fff;padding:10px 8px;cursor:pointer;font:inherit;text-align:center;transition:border-color .15s,background .15s}
+.visual-tab b{display:block;font-size:1.15rem;line-height:1.3}
+.visual-tab span{display:block;font-size:.69rem;color:#acbfd2}
+.visual-tab::before{content:'';display:block;width:30px;height:4px;border-radius:3px;background:var(--wave-color,#70cad0);margin:0 auto 7px}
+.visual-tab[aria-pressed=true]{border:2px solid var(--accent);background:#1a3b48}
+.visual-tab:hover{background:#1c3953}
+.visual-explanation{color:var(--muted);font-size:14px;line-height:1.55}
+.visual-explanation strong{color:#e4eef7}
+.visual-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.visual-toolbar button{border:1px solid #4a687e;border-radius:8px;padding:9px 14px;background:#16334c;color:#fff;cursor:pointer;font:inherit;font-size:14px}
+.visual-toolbar button:hover{background:#204660}
+.visual-note{padding:15px 18px;background:#102338;border:1px solid #36516a;border-radius:10px;color:#cad8e5;margin-top:18px;font-size:13px}
+.dataset-thumb{margin:0;min-height:128px;border-radius:8px;overflow:hidden;background:#0a1c2c;display:flex;align-items:center;justify-content:center}
+.dataset-thumb img{display:block;width:100%;height:144px;object-fit:cover;object-position:center 15%;border:1px solid #284158}
+.dataset-thumb .pending{font-size:12px;color:#94b1c9;padding:16px;text-align:center}
+.visual-dialog{border:1px solid #5a7793;background:#081422;color:#eaf2fa;border-radius:14px;padding:16px;max-width:min(1200px,95vw);max-height:92vh;box-shadow:0 20px 80px #000a}
+.visual-dialog::backdrop{background:#030a13df}
+.visual-dialog .dialog-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:12px}
+.visual-dialog .dialog-top button{border:1px solid #7290a8;border-radius:7px;padding:8px 16px;background:#19354e;color:#fff;font:inherit;cursor:pointer}
+.visual-dialog img{display:block;max-width:100%;max-height:78vh;object-fit:contain;margin:0 auto}
+@media(max-width:850px){.visual-layout{grid-template-columns:1fr}.visual-screen{min-height:200px}.visual-image-button{min-height:220px}}
+@media(max-width:560px){.visual-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.visual-tab{min-height:66px}.visual-meta{align-items:start}}
+
+/* ============================================================
+   v05 | Light editorial / champagne gold / deep midnight-blue
+   Warm ivory surfaces and accessible dark typography. The map
+   viewer remains dark deliberately for true scientific PNGs.
+   ============================================================ */
+:root {
+  color-scheme: light;
+  --bg: #faf8f4;
+  --panel: #ffffff;
+  --panel2: #f3eee5;
+  --line: #e7e0d6;
+  --text: #152b3b;
+  --muted: #586775;
+  --accent: #96713d;
+  --blue: #234d66;
+  --gold: #b48b50;
+  --danger: #8e5d30;
+  --navy: #172f40;
+  --champagne: #ece0cb;
+}
+html { scroll-padding-top: 82px; }
+body { background:var(--bg); color:var(--text); }
+::selection { background:#ead6b5; color:#172f40; }
+a { color:#23516c; text-underline-offset: 3px; }
+a:hover { color:#8f672e; }
+a:focus-visible,button:focus-visible,input:focus-visible { outline:3px solid #a87c3e; outline-offset:3px; }
+.skip { background:#fff; color:#172f40; border:2px solid #ae874b; }
+.topbar {
+  background:rgba(255,255,255,.95);
+  border-bottom:1px solid #e9e1d4;
+  box-shadow:0 4px 22px rgba(28,43,53,.045);
+}
+.topbar::before { content:"";display:block;height:3px;background:linear-gradient(90deg,#f1e4cd 0%,#ad8348 36%,#d9bd86 68%,#f8eee1 100%); }
+nav { min-height:79px; }
+.brand { color:var(--navy); letter-spacing:.01em; font-weight:800; }
+.brand:hover { color:#a1793f; }
+.brandmark { width:40px;height:40px;border:1px solid #b99256;border-radius:50%;color:#a47b42;background:#faf4e9;font-size:22px; }
+.navlinks a { color:#495b69;font-weight:650; }
+.navlinks a:hover { color:#936c34; }
+.hero {
+  background:
+    radial-gradient(ellipse 520px 560px at 92% 15%, rgba(219,187,136,.25),transparent 72%),
+    radial-gradient(ellipse 640px 420px at 15% 95%,rgba(219,232,231,.48),transparent 75%),
+    linear-gradient(116deg,#fcfbf8 0%,#f6f0e5 100%);
+  border-bottom:1px solid #e9e1d3;
+}
+.hero::after { content:"";pointer-events:none;position:absolute;top:44px;right:max(3vw,22px);width:min(31vw,370px);aspect-ratio:1;border:1px solid rgba(183,143,81,.18);border-radius:50%;box-shadow:0 0 0 36px rgba(192,164,118,.065),0 0 0 75px rgba(192,164,118,.035); }
+.hero .shell { position:relative;z-index:1; padding-top:100px;padding-bottom:78px; }
+.kicker,.mini { color:#947044;font-weight:850;letter-spacing:2px; }
+.hero h1 { color:#182e3f; font-family:Georgia, 'Times New Roman', serif;font-size:clamp(2.45rem,5vw,4.95rem);line-height:1.09;letter-spacing:-.047em;max-width:950px;font-weight:700; }
+h2 { color:#182f40;font-family:Georgia,'Times New Roman',serif;letter-spacing:-.035em;font-weight:700; }
+h3 { color:#1f3646; }
+.lead { color:#455b69;max-width:780px;font-size:1.13rem; }
+.badge { color:#674e2b;background:#f8f0df;border:1px solid #ddc5a1;box-shadow:0 3px 12px rgba(127,104,67,.05); }
+.badge strong { color:#493e2e; }
+.badge::before { background:#b48948; }
+.button { border-color:#1a3546;background:#1a3546;color:#fff;box-shadow:0 5px 12px rgba(22,44,60,.1); }
+.button:hover { background:#2e4c5d;color:#fff; }
+.button.ghost { background:#fff8ed;color:#6c512c;border-color:#b99b6d;box-shadow:none; }
+.button.ghost:hover { color:#1b3445;background:#f0e1c9; }
+.stats { margin-top:66px; }
+.stat { background:rgba(255,255,255,.90);border:1px solid #eadfcd;box-shadow:0 12px 35px rgba(41,51,55,.055);border-radius:12px; }
+.stat b { color:#9a7540;font-family:Georgia,'Times New Roman',serif;font-weight:700; }
+.stat span { color:#536270; }
+section { border-bottom:1px solid #eae3d8; }
+section:nth-of-type(even) { background:#f5f1e9; }
+.sub { color:#536576; }
+.panel,.dataset { background:#fff;border:1px solid #e6ded3;box-shadow:0 8px 30px rgba(41,49,54,.045);border-radius:12px; }
+.panel h3,.dataset h3 { color:#25394a; }
+.panel p,.dataset p { color:#5a6874; }
+.callout { background:#f8efe1;border:1px solid #e0cba9;box-shadow:none; }
+.callout strong { color:#594020; }
+.callout p { color:#614f3d; }
+.callout .icon { color:#91652e;font-weight:800; }
+.muted { color:#61717d; }
+.filter { background:#fff;color:#364e5e;border-color:#d9d4cc; }
+.filter:hover { background:#f5eee0; }
+.filter.active { color:white;background:#1b394c;border-color:#1b394c; }
+.search { background:#fff;color:#1b3445;border-color:#c9c3ba;box-shadow:inset 0 1px 3px rgba(0,0,0,.025); }
+.search::placeholder { color:#687a86; }
+.dataset { min-height:264px; }
+.dataset header { background:transparent; }
+.wave { color:#1b3445;font-family:Georgia,'Times New Roman',serif; }
+.kind { color:#21455c;background:#e7f0f3; }
+.kind.uv { color:#7d5728;background:#f8eedc; }
+.dataset .details { color:#667481; }
+.dataset footer { border-color:#eee5d8; }
+.dataset footer a { color:#28556d; }
+.dataset footer a:hover { color:#986e35; }
+.count,.results { color:#6d7c87; }
+.tablewrap { background:#fff;border-color:#e5ddd0; }
+thead { background:#213d50; }
+th { color:#fff;border-color:#385164; }
+td { color:#435968;border-bottom-color:#ece7df; }
+tbody tr:nth-child(even) { background:#fcfaf6; }
+.note { color:#5a6b78; }
+.bullet { color:#4d6070; }
+.pill { color:#72522d;border-color:#e0cdae;background:#fbf5e9; }
+footer.sitefooter { background:#1d3546;border-top:4px solid #bb985b;color:#e1e8eb; }
+footer.sitefooter a { color:#f4ddb5; }
+.visual-layout { gap:26px; }
+/* Preserve the dark scientific figure well while brightening its frame and metadata. */
+.visual-frame { background:#fff;border:1px solid #d9cfbd;border-radius:13px;box-shadow:0 15px 36px rgba(27,43,52,.09); }
+.visual-screen { background:repeating-linear-gradient(0deg,transparent 0,transparent 23px,#142a3c 24px),repeating-linear-gradient(90deg,transparent 0,transparent 23px,#142a3c 24px),#081929; }
+.visual-fallback { color:#e0e9ef; }
+.visual-fallback .fallback-icon { color:#d7b983; }
+.visual-fallback small { color:#b0c3d3; }
+.visual-meta { background:#fff;border-top:1px solid #e5dccf; }
+.visual-meta strong { color:#234051; }
+.visual-meta span { color:#596c7a; }
+.visual-tab { background:#fff;color:#213b4d;border:1px solid #ddd4c9;border-radius:10px; }
+.visual-tab span { color:#6b7b86; }
+.visual-tab[aria-pressed=true] { border:2px solid #a77e43;background:#fff4e2;color:#1c3748;box-shadow:0 4px 14px rgba(165,129,71,.09); }
+.visual-tab:hover { background:#faf3e8; }
+.visual-explanation { color:#5a6a79; }
+.visual-explanation strong { color:#203b50; }
+.visual-toolbar button { border:1px solid #29465a;border-radius:8px;background:#fff;color:#264459; }
+.visual-toolbar button:hover { background:#1e3b4d;color:#fff; }
+.visual-note { background:#f9f1e3;color:#6e5430;border:1px solid #e6d1ab;border-radius:10px; }
+.visual-note strong { color:#654623; }
+.dataset-thumb { background:#f3efe7; }
+.dataset-thumb img { border:1px solid #e6dbcb; }
+.dataset-thumb .pending { color:#77848e; }
+.visual-dialog { background:#fff;color:#243b4c;border:1px solid #d1c0a6;box-shadow:0 28px 90px #0006; }
+.visual-dialog::backdrop { background:#0b1c2ad9; }
+.visual-dialog .dialog-top button { border:1px solid #bca67c;background:#f6ecda;color:#273b47; }
+/* small premium details */
+.panel,.dataset,.stat { transition:transform .18s ease,box-shadow .18s ease; }
+@media(hover:hover) and (pointer:fine) { .panel:hover,.dataset:hover { transform:translateY(-2px);box-shadow:0 12px 30px rgba(40,48,54,.09); } }
+@media(max-width:560px) { .hero .shell { padding-top:58px;padding-bottom:54px; }.hero::after { width:210px;right:-110px;top:100px; }.stat { padding:18px; } }
+@media(prefers-reduced-motion:reduce) { .panel,.dataset,.stat { transition:none; } }
+
+/* Nine-wavelength video exhibit. Asset media is only loaded after a visitor asks for it. */
+.video-introline { display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:20px 0 24px; }
+.video-tag { color:#6d512d;background:#f9efdE;border:1px solid #d7bd91;border-radius:100px;padding:7px 13px;font-size:12px;font-weight:750; }
+.video-layout { display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.65fr);gap:26px;align-items:start; }
+.video-stage { border:1px solid #d9cfbd;background:white;overflow:hidden;border-radius:14px;box-shadow:0 15px 35px rgba(28,45,55,.08);min-width:0; }
+.video-player-shell { position:relative;background:#071421; }
+.video-player-shell video { display:block;width:100%;max-height:640px;aspect-ratio:1110/944;object-fit:contain;background:#071421; }
+.video-stage-footer {padding:15px 19px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;color:#51616d;font-size:13px;}
+.video-stage-footer strong {color:#213849;font-size:16px;}
+.video-choices {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:13px 0 19px;}
+.video-choice {border:1px solid #ded3c5;background:#fff;border-radius:10px;min-height:79px;padding:10px 7px;text-align:center;cursor:pointer;color:#263f50;font:inherit;}
+.video-choice b{display:block;font-size:18px;line-height:1.25;font-family:Georgia,'Times New Roman',serif;}
+.video-choice span{display:block;color:#657582;font-size:12px;}
+.video-choice::before{content:'';display:block;margin:0 auto 9px;width:32px;height:4px;border-radius:10px;background:var(--wave-color,#c1a46b);}
+.video-choice[aria-pressed=true]{border:2px solid #a77e43;background:#fff4e2;box-shadow:0 4px 14px rgba(165,129,71,.07)}
+.video-controls {display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 12px}
+.video-action{background:#213e50;color:#fff;border:1px solid #213e50;border-radius:8px;padding:11px 17px;font:inherit;font-size:14px;font-weight:750;cursor:pointer;min-height:44px;}
+.video-action:hover{background:#365c71}
+.video-action.secondary{background:#fff8ee;color:#5c482d;border-color:#cbb18b}
+.video-action.secondary:hover{background:#f3e5ca}
+.video-description {font-size:14px;color:#5c6b77;line-height:1.65;}
+.video-feedback {min-height:42px;padding:11px 14px;background:#fbf6ed;border:1px solid #e8d8bc;border-radius:8px;color:#695132;font-size:13px;}
+.video-smallnote {margin-top:20px;font-size:13px;color:#596a78;}
+@media(max-width:870px){.video-layout{grid-template-columns:1fr}}
+@media(max-width:520px){.video-choices{grid-template-columns:repeat(3,minmax(0,1fr))}.video-stage-footer{align-items:flex-start}.video-player-shell video{max-height:500px}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="topbar"><nav class="shell" aria-label="Main navigation"><a class="brand" href="#top"><span class="brandmark" aria-hidden="true">☼</span><span>SDO/AIA · Synoptic Archive</span></a><div class="navlinks"><a href="#overview">Overview</a><a href="#catalog">Datasets</a><a href="#products">Products</a><a href="#validation">Validation</a><a href="#citation">Citation</a></div></nav></div>
+<div class="topbar"><nav class="shell" aria-label="Main navigation"><a class="brand" href="#top"><span class="brandmark" aria-hidden="true">☼</span><span>SDO/AIA · Synoptic Archive</span></a><div class="navlinks"><a href="#overview">Overview</a><a href="#visuals">Map Gallery</a><a href="#animations">Videos</a><a href="#catalog">Datasets</a><a href="#products">Products</a><a href="#validation">Validation</a><a href="#citation">Citation</a></div></nav></div>
 <main id="main">
 <div class="hero" id="top"><div class="shell">
 <div class="kicker">Solar physics · Multiwavelength research archive</div>
 <h1>Carrington synoptic maps of the Sun, across nine AIA wavelengths.</h1>
 <p class="lead">A research archive of SDO/AIA EUV and UV synoptic maps, with CEA intensity FITS, internal uncertainty products, quality diagnostics and visual walkthrough videos.</p>
 <div class="badge"><strong>Harvard Dataverse status:</strong> 13 draft datasets · not publicly released</div>
-<div class="buttons"><a class="button" href="#catalog">Browse dataset catalog ↓</a><a class="button ghost" href="#validation">Read release status</a></div>
+<div class="buttons"><a class="button" href="#visuals">View real AIA maps ↓</a><a class="button ghost" href="#animations">Watch animations ▶</a><a class="button ghost" href="#catalog">Browse dataset catalog</a><a class="button ghost" href="#validation">Read release status</a></div>
 <div class="stats"><div class="stat"><b>9</b><span>AIA UV/EUV passbands</span></div><div class="stat"><b>216</b><span>Carrington rotations per channel</span></div><div class="stat"><b>13</b><span>Harvard draft datasets</span></div><div class="stat"><b>9,932</b><span>FITS files uploaded and inventoried</span></div></div>
 </div></div>
 <section id="overview"><div class="shell"><div class="mini">The archive</div><h2>Designed for reproducible solar analysis</h2><p class="sub">The collection spans Carrington rotations CR2097–CR2312. Quantitative files are organized by wavelength and product, with separate uncertainty and quality-control resources where applicable.</p><div class="grid"><article class="panel"><div class="mini">Seven passbands</div><h3>Extreme ultraviolet</h3><p>94, 131, 171, 193, 211, 304, and 335 Å; baseline CEA intensity and three uncertainty FITS products per released rotation.</p></article><article class="panel"><div class="mini">Two passbands</div><h3>Ultraviolet</h3><p>1600 and 1700 Å; baseline CEA maps, dimensionless CLV-relative maps, uncertainty and sampling diagnostics.</p></article><article class="panel"><div class="mini">Data formats</div><h3>Quantitative and visual</h3><p>Individual FITS files provide numerical data. One 216-frame MP4 walkthrough per wavelength provides a visual check, not a replacement for quantitative FITS.</p></article></div></div></section>
+
+<section id="visuals" aria-labelledby="visuals-title"><div class="shell">
+<div class="mini">Archive image gallery · CR2291</div>
+<h2 id="visuals-title">See the synoptic maps</h2>
+<p class="sub">Preview images from the project’s own MATLAB-produced maps. Select an AIA wavelength to inspect the <strong>CEA intensity map (top)</strong> alongside its <strong>internal uncertainty map (bottom)</strong>. These are scientific quicklooks—not calibrated color measurements.</p>
+<div class="visual-layout">
+  <div class="visual-frame">
+    <div class="visual-screen">
+      <button id="visual-open" class="visual-image-button" type="button" aria-label="Enlarge selected scientific quicklook" hidden><img id="visual-img" src="" alt="" decoding="async"></button>
+      <div id="visual-fallback" class="visual-fallback" role="status"><span class="fallback-icon" aria-hidden="true">☼</span><strong>Preparing map quicklook</strong><small>Scientific preview will appear when its PNG is added to the website repository.</small></div>
+    </div>
+    <div class="visual-meta"><strong id="visual-label">AIA 193 Å · Carrington rotation 2291</strong><span>Top: intensity · Bottom: internal uncertainty</span></div>
+  </div>
+  <div>
+    <div class="mini">Select an AIA passband</div>
+    <div class="visual-tabs" id="visual-tabs" role="group" aria-label="Select wavelength quicklook"></div>
+    <p class="visual-explanation"><strong>What are we seeing?</strong> Each panel is a Carrington synoptic map covering 360° in longitude. The upper map contains brightness in DN/s; the lower contains the corresponding internal uncertainty in DN/s. UV 1600/1700 quicklooks show baseline intensity, not CLV-relative contrast.</p>
+    <div class="visual-toolbar"><button type="button" id="visual-prev">← Previous</button><button type="button" id="visual-next">Next →</button></div>
+  </div>
+</div>
+<div class="visual-note" role="note"><strong>Scientific use:</strong> Images are quicklook renderings with display stretches and false-color palettes. Use the archived FITS (when published) for quantitative work. The CR2291 preview does not represent data quality for every rotation. Missing thumbnails are never replaced with simulated science data.</div>
+</div></section>
+<dialog id="visual-dialog" class="visual-dialog" aria-label="Enlarged scientific map preview"><div class="dialog-top"><strong id="dialog-title">AIA map preview</strong><button type="button" id="dialog-close">Close ✕</button></div><img id="dialog-image" alt=""></dialog>
+
+
+<section id="animations" aria-labelledby="animations-title">
+<div class="shell">
+<div class="mini">Carrington rotation time series · 216 frames per channel</div>
+<h2 id="animations-title">Solar synoptic map animations</h2>
+<p class="sub">Watch the changing EUV and UV Carrington synoptic maps over <strong>CR2097–CR2312</strong>. Each movie shows intensity (upper panel) and internal uncertainty (lower panel), with a consistent color stretch within each wavelength. Select a wavelength, then choose <strong>Load &amp; play</strong>. Video data are not downloaded until requested.</p>
+<div class="video-introline"><span class="video-tag">9 passbands</span><span class="video-tag">216 rotations</span><span class="video-tag">3 frames per second</span><span class="video-tag">72 seconds per movie</span></div>
+<div class="video-layout">
+  <div class="video-stage">
+    <div class="video-player-shell">
+      <video id="movie-player" controls preload="none" playsinline aria-label="SDO AIA synoptic map animation for selected wavelength" poster="assets/previews/AIA193_CR2291.png">Your browser does not support HTML5 video playback.</video>
+    </div>
+    <div class="video-stage-footer"><strong id="movie-title">AIA 193 Å · CR2097–2312</strong><span>Intensity above · Internal uncertainty below</span></div>
+  </div>
+  <div>
+    <div class="mini">Choose wavelength</div>
+    <div id="movie-choices" class="video-choices" role="group" aria-label="Select animation wavelength"></div>
+    <p class="video-description">The preview image is <strong>CR2291</strong> (frame 195 of 216). The video begins at <strong>CR2097</strong> and advances by one Carrington rotation per frame. Colors indicate visualization scaling, not additional calibrated measurements.</p>
+    <div class="video-controls"><button id="movie-load" class="video-action" type="button">▶ Load &amp; play AIA 193 Å</button><button id="movie-restart" class="video-action secondary" type="button" disabled>↺ Restart</button></div>
+    <p id="movie-feedback" class="video-feedback" role="status" aria-live="polite">Select a wavelength and press “Load &amp; play”. No videos have been loaded yet.</p>
+  </div>
+</div>
+<p class="video-smallnote"><strong>Scientific note:</strong> These MP4s are compressed visual summaries, not substitutes for scientific FITS. AIA131/CR2239 was withheld from the FITS release pending assessment; the video is for visual inspection only and does not validate that rotation. The Harvard datasets remain in Draft. Movies here are served from this website independently of draft Dataverse access.</p>
+</div>
+</section>
 <section id="catalog"><div class="shell"><div class="mini">Persistent identifiers</div><h2>Browse the nine wavelengths</h2><p class="sub">Each channel links to its Harvard Dataverse draft record. UV channels also link to the separate Uncertainty &amp; Sampling and Quality Control records.</p>
 <div class="callout" role="note"><span class="icon" aria-hidden="true">!</span><p><strong>Draft access notice.</strong> DOI records are created, but the datasets have <strong>not</strong> been formally published. Visitors without permission may be unable to view files, download FITS, or access draft content. Public download access will begin after scientific sign-off and publication.</p></div>
 <div class="catalog-controls"><div class="filters" role="group" aria-label="Filter wavelengths"><button class="filter active" data-filter="all" aria-pressed="true" type="button">All nine</button><button class="filter" data-filter="euv" aria-pressed="false" type="button">EUV (7)</button><button class="filter" data-filter="uv" aria-pressed="false" type="button">UV (2)</button></div><label><span class="visually-hidden" style="position:absolute;clip:rect(0 0 0 0);height:1px;width:1px;overflow:hidden">Search by wavelength</span><input class="search" type="search" id="search" placeholder="Search: e.g. 193 or 1600" aria-label="Search wavelength"></label></div>
@@ -72,6 +318,9 @@ section{padding:76px 0;border-bottom:1px solid #1e354b}h2{font-size:clamp(1.7rem
     {wave:'1700',type:'uv',doi:'QASBYM',n:650,unc:'D6HDFU',qc:'VLI2DV'}
   ];
   const grid = document.getElementById('dataset-grid');
+  const imagePath = wave => 'assets/previews/AIA'+wave+'_CR2291.png';
+  const imageAlts = wave => 'SDO/AIA '+wave+' angstrom Carrington rotation 2291, CEA synoptic intensity above and internal uncertainty below';
+
   const search = document.getElementById('search');
   const count = document.getElementById('result-count');
   let filter='all';
@@ -86,12 +335,16 @@ section{padding:76px 0;border-bottom:1px solid #1e354b}h2{font-size:clamp(1.7rem
       const title=document.createElement('span');title.className='wave';title.textContent=d.wave+' Å';
       const kind=document.createElement('span');kind.className='kind'+(d.type==='uv'?' uv':'');kind.textContent=d.type.toUpperCase();head.append(title,kind);
       const description=document.createElement('p'); description.textContent=d.type==='uv'?'CEA intensity, CLV-relative maps and internal uncertainty. Companion sampling/uncertainty and CAR QC datasets.':'CEA intensity plus three internal uncertainty components. One MP4 overview.';
+      const thumb=document.createElement('div');thumb.className='dataset-thumb';
+      const thumbImg=document.createElement('img');thumbImg.loading='lazy';thumbImg.decoding='async';thumbImg.src=imagePath(d.wave);thumbImg.alt=imageAlts(d.wave);
+      thumbImg.onerror=()=>{thumb.replaceChildren();const missing=document.createElement('span');missing.className='pending';missing.textContent='Quicklook pending · CR2291';thumb.append(missing);};
+      thumb.append(thumbImg);
       const detail=document.createElement('div');detail.className='details';detail.textContent=d.n+' files in draft · '+(d.flag||'CR2097–CR2312');
       const foot=document.createElement('footer');
       function anchor(suffix,label){const a=document.createElement('a');a.href=link(suffix);a.target='_blank';a.rel='noopener noreferrer';a.textContent=label+' ↗';a.setAttribute('aria-label',label+' for '+d.wave+' angstrom');return a;}
       foot.append(anchor(d.doi,'Main DOI'));
       if(d.unc){foot.append(anchor(d.unc,'Uncertainty DOI'),anchor(d.qc,'QC DOI'));}
-      article.append(head,description,detail,foot);grid.append(article);
+      article.append(head,thumb,description,detail,foot);grid.append(article);
     }
     count.textContent=matches.length+' of 9 wavelength records shown.';
   }
@@ -102,6 +355,117 @@ section{padding:76px 0;border-bottom:1px solid #1e354b}h2{font-size:clamp(1.7rem
   }));
   search.addEventListener('input',render);
   render();
+
+  // Real science-preview gallery. Only files generated from the user's own archive are loaded.
+  const galleryWaves=['94','131','171','193','211','304','335','1600','1700'];
+  const galleryPalette=['#57b476','#70c2ac','#e6b85c','#e5a56b','#ae87d9','#e47773','#729fcf','#d1a750','#cb8eaf'];
+  const visualTabs=document.getElementById('visual-tabs');
+  const visualImage=document.getElementById('visual-img');
+  const visualOpen=document.getElementById('visual-open');
+  const visualMissing=document.getElementById('visual-fallback');
+  const visualLabel=document.getElementById('visual-label');
+  const dialog=document.getElementById('visual-dialog');
+  const dialogImage=document.getElementById('dialog-image');
+  let selectedIndex=3, imageRequest=0;
+  const tabButtons=[];
+  for(let i=0;i<galleryWaves.length;i++){
+    const b=document.createElement('button'); b.type='button';b.className='visual-tab';
+    b.style.setProperty('--wave-color',galleryPalette[i]);
+    b.innerHTML='<b>'+galleryWaves[i]+' Å</b><span>'+(i<7?'EUV':'UV')+'</span>';
+    b.setAttribute('aria-label','Show AIA '+galleryWaves[i]+' angstrom map');
+    b.addEventListener('click',()=>selectWave(i));
+    visualTabs.append(b);tabButtons.push(b);
+  }
+  function selectWave(i){
+    selectedIndex=(i+galleryWaves.length)%galleryWaves.length;
+    const wave=galleryWaves[selectedIndex];
+    visualLabel.textContent='AIA '+wave+' Å · Carrington rotation 2291';
+    tabButtons.forEach((b,j)=>b.setAttribute('aria-pressed',String(j===selectedIndex)));
+    const request=++imageRequest;
+    visualOpen.hidden=true;visualImage.removeAttribute('src');
+    visualMissing.hidden=false;
+    visualMissing.innerHTML='<span class="fallback-icon" aria-hidden="true">☼</span><strong>Loading AIA '+wave+' Å quicklook…</strong>';
+    const probe=new Image();
+    probe.onload=()=>{
+      if(request!==imageRequest)return;
+      visualImage.src=probe.src;visualImage.alt=imageAlts(wave);
+      visualOpen.hidden=false;visualMissing.hidden=true;
+    };
+    probe.onerror=()=>{
+      if(request!==imageRequest)return;
+      visualMissing.innerHTML='<span class="fallback-icon" aria-hidden="true">☼</span><strong>AIA '+wave+' Å quicklook not yet uploaded</strong><small>Add assets/previews/AIA'+wave+'_CR2291.png to this site to display the real map. No synthetic replacement is shown.</small>';
+    };
+    probe.src=imagePath(wave);
+  }
+  document.getElementById('visual-prev').addEventListener('click',()=>selectWave(selectedIndex-1));
+  document.getElementById('visual-next').addEventListener('click',()=>selectWave(selectedIndex+1));
+  visualOpen.addEventListener('click',()=>{
+    if(visualOpen.hidden)return;
+    dialogImage.src=visualImage.src;dialogImage.alt=visualImage.alt;
+    document.getElementById('dialog-title').textContent=visualLabel.textContent;
+    if(typeof dialog.showModal==='function')dialog.showModal();
+    else window.open(visualImage.src,'_blank','noopener,noreferrer');
+  });
+  document.getElementById('dialog-close').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+  selectWave(3);
+
+  // Video exhibit: a single HTML5 player; only the chosen movie is loaded.
+  // MP4 and CR2291 PNG files are copied from the user's real archive by the installer.
+  const moviePlayer=document.getElementById('movie-player');
+  const movieButtons=document.getElementById('movie-choices');
+  const movieLoad=document.getElementById('movie-load');
+  const movieRestart=document.getElementById('movie-restart');
+  const movieTitle=document.getElementById('movie-title');
+  const movieFeedback=document.getElementById('movie-feedback');
+  let movieIndex=3;
+  let movieLoaded=false;
+  const movieTabs=[];
+  function moviePath(wave){return 'assets/videos/AIA'+wave+'_CR2097-2312.mp4';}
+  function selectMovie(i){
+    movieIndex=i;
+    const wave=galleryWaves[movieIndex];
+    moviePlayer.pause();
+    moviePlayer.removeAttribute('src');
+    moviePlayer.load();
+    moviePlayer.poster=imagePath(wave);
+    moviePlayer.setAttribute('aria-label','AIA '+wave+' angstrom synoptic map animation, CR2097 to CR2312');
+    movieLoaded=false;movieRestart.disabled=true;
+    movieTitle.textContent='AIA '+wave+' Å · CR2097–2312';
+    movieLoad.textContent='▶ Load & play AIA '+wave+' Å';
+    movieFeedback.textContent='AIA '+wave+' Å selected. Load the video when ready.';
+    movieTabs.forEach((b,j)=>b.setAttribute('aria-pressed',String(i===j)));
+  }
+  for(let i=0;i<galleryWaves.length;i++){
+    const b=document.createElement('button');b.type='button';b.className='video-choice';
+    b.style.setProperty('--wave-color',galleryPalette[i]);
+    const heading=document.createElement('b');heading.textContent=galleryWaves[i]+' Å';
+    const kind=document.createElement('span');kind.textContent=i<7?'EUV':'UV';
+    b.append(heading,kind);
+    b.setAttribute('aria-label','Select AIA '+galleryWaves[i]+' angstrom video');
+    b.addEventListener('click',()=>selectMovie(i));
+    movieButtons.append(b);movieTabs.push(b);
+  }
+  movieLoad.addEventListener('click',()=>{
+    const wave=galleryWaves[movieIndex];
+    if(!movieLoaded){
+      moviePlayer.src=moviePath(wave);
+      movieLoaded=true;
+      movieRestart.disabled=false;
+    }
+    movieFeedback.textContent='Loading AIA '+wave+' Å from the website. Video playback is a quicklook, not a calibrated data product.';
+    const p=moviePlayer.play();
+    if(p && typeof p.catch==='function') p.catch(()=>{movieFeedback.textContent='AIA '+wave+' Å selected. Press Play on the video to begin.';});
+  });
+  movieRestart.addEventListener('click',()=>{if(movieLoaded){moviePlayer.currentTime=0;const p=moviePlayer.play();if(p&&p.catch)p.catch(()=>{});}});
+  moviePlayer.addEventListener('error',()=>{
+    if(!movieLoaded)return;
+    const wave=galleryWaves[movieIndex];
+    movieFeedback.textContent='Video unavailable: '+moviePath(wave)+'. Check that the installer copied this file into the repository.';
+    movieRestart.disabled=true;
+  });
+  moviePlayer.addEventListener('playing',()=>{movieFeedback.textContent='Playing AIA '+galleryWaves[movieIndex]+' Å · 216 rotations · 3 fps.';});
+  selectMovie(3);
 })();
 </script>
 </body>
